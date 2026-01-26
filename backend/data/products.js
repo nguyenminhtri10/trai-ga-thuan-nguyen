@@ -1,0 +1,208 @@
+const products = [
+    {
+        name: 'Gà Nòi Tía Chân Vàng VIP',
+        code: 'GN-001',
+        category: 'Gà Nòi',
+        price: 5000000,
+        description: 'Chiến kê Gà Nòi Tía, chân vàng điểm mực. Dáng đứng uy phong, lông mượt, cơ bắp săn chắc. Lối đá mé, tốc độ cao.',
+        weight: '2.8 kg',
+        age: '12 tháng',
+        achievements: 'Win 2x (C1)',
+        image: 'https://placehold.co/600x400/8B0000/FFF?text=Ga+Tia+VIP',
+        images: [
+            'https://placehold.co/600x400/8B0000/FFF?text=Tia+Goc+Nghieng',
+            'https://placehold.co/600x400/8B0000/FFF?text=Tia+Chan',
+            'https://placehold.co/600x400/8B0000/FFF?text=Tia+Can+Canh'
+        ],
+        isHot: true
+    },
+    {
+        name: 'Gà Tre Mỹ Rặc',
+        code: 'GT-005',
+        category: 'Gà Tre',
+        price: 2500000,
+        description: 'Gà tre dòng Mỹ rặc, nạp lùa tốc độ. Bản lĩnh lì lợm, đá bo lớn. Thích hợp cho anh em chơi đá tiền.',
+        weight: '1.2 kg',
+        age: '10 tháng',
+        achievements: 'Thử cựa 1x',
+        image: 'https://placehold.co/600x400/D4AF37/000?text=Ga+Tre+My',
+        images: [
+            'https://placehold.co/600x400/D4AF37/000?text=Tre+My+1'
+        ],
+        isHot: true
+    },
+    {
+        name: 'Gà Xám Cú Siêu Phẩm',
+        code: 'GN-002',
+        category: 'Gà Nòi',
+        price: 8000000,
+        description: 'Siêu phẩm Xám Cú. Chân xanh mắt ếch. Lối đá không đối thủ, chuyên trị gà chạy. Hàng hiếm cho anh em sưu tầm.',
+        weight: '3.0 kg',
+        age: '14 tháng',
+        achievements: 'Win 5x thông',
+        image: 'https://placehold.co/600x400/333/FFF?text=Xam+Cu+Sieu+Pham',
+        images: [
+            'https://placehold.co/600x400/333/FFF?text=Xam+Head',
+            'https://placehold.co/600x400/333/FFF?text=Xam+Legs'
+        ],
+        isHot: false
+    },
+    {
+        name: 'Gà Que Nghệ',
+        code: 'GN-003',
+        category: 'Gà Nòi',
+        price: 3500000,
+        description: 'Gà que nghệ chân trắng mỏ ngà. Tướng tá liền lạc, mạnh mẽ. Lối đá nạp sâu, chân tin.',
+        weight: '2.7 kg',
+        age: '11 tháng',
+        achievements: 'Zin chưa đá',
+        image: 'https://placehold.co/600x400/555/FFF?text=Que+Nghe',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Tre Asil Lai',
+        code: 'GT-012',
+        category: 'Gà Tre',
+        price: 1800000,
+        description: 'Asil lai Mỹ, khung xương to, nết đá khôn khéo. Gà tơ mới lên bội.',
+        weight: '1.3 kg',
+        age: '9 tháng',
+        achievements: 'Mới xổ 1 dạt',
+        image: 'https://placehold.co/600x400/777/FFF?text=Tre+Asil',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Điều Mật',
+        code: 'GN-008',
+        category: 'Gà Nòi',
+        price: 0,
+        description: 'Gà điều mật chân chì. Bổn bang dữ dằn. Cần bán hoặc giao lưu gà mái nòi.',
+        weight: '2.9 kg',
+        age: '13 tháng',
+        achievements: 'Win 1x',
+        image: 'https://placehold.co/600x400/999/000?text=Dieu+Mat',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Cú Cườm',
+        code: 'GN-015',
+        category: 'Gà Nòi',
+        price: 4200000,
+        description: 'Cú cườm chân vàng thau. Gà đá canh chặn, tránh né tốt. Bo lớn, nhập hậu sâu.',
+        weight: '2.85 kg',
+        age: '11 tháng',
+        achievements: 'Win 1x',
+        image: 'https://placehold.co/600x400/AAA/000?text=Cu+Cuom',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Ô Taxi',
+        code: 'GN-020',
+        category: 'Gà Nòi',
+        price: 6500000,
+        description: 'Ô đen tuyền, chân đen. Dữ dằn như hổ. Ra đòn hiểm, độ bền cao.',
+        weight: '3.1 kg',
+        age: '15 tháng',
+        achievements: 'Win 3x',
+        image: 'https://placehold.co/600x400/000/FFF?text=O+Taxi',
+        images: [],
+        isHot: true
+    },
+    {
+        name: 'Gà Tre Jap Lai',
+        code: 'GT-022',
+        category: 'Gà Tre',
+        price: 3000000,
+        description: 'Jap lai Mỹ, máu lửa, không biết sợ. Tốc độ ra chân cực nhanh.',
+        weight: '1.1 kg',
+        age: '10 tháng',
+        achievements: 'Thử cựa 2x',
+        image: 'https://placehold.co/600x400/CC0/000?text=Tre+Jap',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Bướm Chân Xanh',
+        code: 'GN-030',
+        category: 'Gà Nòi',
+        price: 5500000,
+        description: 'Bướm chân xanh cam. Đẹp như tranh vẽ. Lối đá hoa mỹ nhưng hiệu quả.',
+        weight: '2.75 kg',
+        age: '12 tháng',
+        achievements: 'Chưa đá trường lớn',
+        image: 'https://placehold.co/600x400/EEE/000?text=Buom+Chan+Xanh',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Chuối Gấm',
+        code: 'GT-035',
+        category: 'Gà Tre',
+        price: 2200000,
+        description: 'Chuối gấm chân vàng, cựa đen. Tướng cao ráo, bản lề tốt.',
+        weight: '1.25 kg',
+        age: '9.5 tháng',
+        achievements: 'Gà tơ',
+        image: 'https://placehold.co/600x400/DD0/000?text=Chuoi+Gam',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Xanh Năng',
+        code: 'GN-040',
+        category: 'Gà Nòi',
+        price: 4800000,
+        description: 'Xanh năng chân xanh. Lông ốp sát, cơ bắp cuồn cuộn.',
+        weight: '3.2 kg',
+        age: '16 tháng',
+        achievements: 'Win 2x',
+        image: 'https://placehold.co/600x400/050/FFF?text=Xanh+Nang',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Khét Sữa',
+        code: 'GN-045',
+        category: 'Gà Nòi',
+        price: 2800000,
+        description: 'Khét sữa chân trắng. Gà lành tính nhưng ra trường rất dữ.',
+        weight: '2.6 kg',
+        age: '11 tháng',
+        achievements: 'Mới xổ',
+        image: 'https://placehold.co/600x400/FE0/000?text=Khet+Sua',
+        images: [],
+        isHot: false
+    },
+    {
+        name: 'Gà Cuban Nhập',
+        code: 'GT-050',
+        category: 'Gà Tre',
+        price: 15000000,
+        description: 'Cuban nhập khẩu 100%. Dòng máu sát thủ. Tốc độ kinh hoàng.',
+        weight: '1.4 kg',
+        age: '12 tháng',
+        achievements: 'Gà Nọc',
+        image: 'https://placehold.co/600x400/F00/FFF?text=Cuban+Nhap',
+        images: [],
+        isHot: true
+    },
+    {
+        name: 'Gà Peru Lai',
+        code: 'GN-055',
+        category: 'Gà Nòi',
+        price: 7000000,
+        description: 'Peru lai Mỹ. Size khủng, đâm cựa như máy khâu.',
+        weight: '3.5 kg',
+        age: '14 tháng',
+        achievements: 'Win 4x',
+        image: 'https://placehold.co/600x400/300/FFF?text=Peru+Lai',
+        images: [],
+        isHot: false
+    }
+];
+
+module.exports = products;

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trại Gà Thuận Nguyễn | Uy Tín & Đẳng Cấp</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Trại Gà Thuận Nguyễn - Chuyên cung cấp các dòng gà nòi, gà tre chất lượng cao. Uy tín tạo nên thương hiệu.">
+    <meta name="keywords" content="trại gà Thuận Nguyễn, gà nòi, gà tre, gà đá, thuốc gà">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-feather-pointed"></i> Thuận Nguyễn
+            </a>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Trang Chủ</a></li>
+                    <li><a href="#about" class="nav-link">Giới Thiệu</a></li>
+                    <li><a href="#products" class="nav-link">Sản Phẩm</a></li>
+                    <li><a href="#contact" class="nav-link">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#contact" class="btn btn-outline">0909.XXX.XXX</a>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title animate-fade-up">Đẳng Cấp & Bản Lĩnh</h1>
+            <p class="hero-subtitle animate-fade-up delay-1">Chất lượng tạo nên thương hiệu. Nơi đam mê hội tụ.</p>
+            <div class="hero-buttons animate-fade-up delay-2">
+                <a href="#products" class="btn btn-primary">Xem Chiến Kê</a>
+                <a href="#contact" class="btn btn-secondary">Tư Vấn Ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Stream Section -->
+    <section id="live" class="live-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Trực Tiếp Tại Trại</h2>
+                <div class="section-divider"></div>
+                <p class="section-desc">Theo dõi hoạt động hàng ngày và các trận xổ gà đỉnh cao</p>
+            </div>
+            <div class="live-container">
+                <!-- Video Area -->
+                <div class="video-wrapper">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1"
+                        title="Live Stream" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <!-- Chat Area -->
+                <div class="chat-wrapper">
+                    <div class="chat-header">
+                        <h3>Bình Luận</h3>
+                        <div class="live-badge-container">
+                            <div class="live-indicator"></div>
+                            <span>TRỰC TIẾP</span>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message system">
+                            <p>Chào mừng bạn đến với kênh Live Stream của Trại Gà Thuận Nguyễn!</p>
+                        </div>
+                        <div class="message">
+                            <span class="user">Minh Tuấn:</span> Gà đẹp quá!
+                        </div>
+                        <div class="message">
+                            <span class="user">Hoàng Nam:</span> Bao giờ có đợt mới vậy anh?
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Nhập bình luận...">
+                        <button id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="about" class="features section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Tại Sao Chọn Thuận Nguyễn?</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <h3>Gen Giống Chuẩn</h3>
+                    <p>Được tuyển chọn kỹ lưỡng từ những dòng giống danh tiếng, đảm bảo tố chất vượt trội.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3>Sức Khỏe Đảm Bảo</h3>
+                    <p>Quy trình chăm sóc khoa học, tiêm phòng đầy đủ, chế độ dinh dưỡng tối ưu.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3>Uy Tín Hàng Đầu</h3>
+                    <p>Luôn đặt chữ Tín lên hàng đầu. Hỗ trợ tư vấn và bảo hành cho anh em đam mê.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="products section-padding bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Chiến Kê Tiêu Biểu</h2>
+                <div class="section-divider"></div>
+                <p class="section-desc">Những siêu phẩm đang có mặt tại trại</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- Placeholder using CSS gradient/icon if image fails, but designed for img tag -->
+                        <div class="img-placeholder"><i class="fa-solid fa-crow"></i></div>
+                    </div>
+                    <div class="product-info">
+                        <span class="badge">Mới Nhất</span>
+                        <h3>Gà Điều Chân Xanh</h3>
+                        <p class="price">Liên hệ</p>
+                        <a href="#contact" class="btn-link">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="img-placeholder"><i class="fa-solid fa-crow"></i></div>
+                    </div>
+                    <div class="product-info">
+                        <span class="badge hot">Hot</span>
+                        <h3>Gà Chuối Gấm</h3>
+                        <p class="price">Liên hệ</p>
+                        <a href="#contact" class="btn-link">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="img-placeholder"><i class="fa-solid fa-crow"></i></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gà Xám Cú</h3>
+                        <p class="price">Liên hệ</p>
+                        <a href="#contact" class="btn-link">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-dark">Xem Tất Cả</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container cta-content">
+            <h2>Bạn Cần Tư Vấn Chọn Gà?</h2>
+            <p>Liên hệ ngay với Thuận Nguyễn để được hỗ trợ tốt nhất.</p>
+            <a href="#contact" class="btn btn-light">Gọi Ngay: 0909.XXX.XXX</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Trại Gà Thuận Nguyễn</h3>
+                <p>Nơi chia sẻ đam mê và cung cấp những chiến kê chất lượng nhất Việt Nam.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Liên Kết</h3>
+                <ul>
+                    <li><a href="#home">Trang Chủ</a></li>
+                    <li><a href="#products">Sản Phẩm</a></li>
+                    <li><a href="#">Tin Tức</a></li>
+                    <li><a href="#">Chính Sách</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Liên Hệ</h3>
+                <ul class="contact-info">
+                    <li><i class="fa-solid fa-location-dot"></i> Ấp X, Xã Y, Huyện Z, Tỉnh...</li>
+                    <li><i class="fa-solid fa-phone"></i> 0909.XXX.XXX</li>
+                    <li><i class="fa-solid fa-envelope"></i> contact@longhuynh.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2024 Trại Gà Thuận Nguyễn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

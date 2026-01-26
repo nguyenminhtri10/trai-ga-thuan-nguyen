@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Gà | Admin</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-feather-pointed"></i> <span>Thuận Admin</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="admin.html"><i class="fa-solid fa-gauge"></i> Tổng Quan</a></li>
+                <li><a href="admin-products.html" class="active"><i class="fa-solid fa-crow"></i> Quản Lý Gà</a></li>
+                <li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Đơn Hàng</a></li>
+                <li><a href="admin-users.html"><i class="fa-solid fa-users"></i> Khách Hàng</a></li>
+                <li><a href="admin-livestream.html"><i class="fa-solid fa-video"></i> Live Stream</a></li>
+
+                <li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng Xuất</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h2>Quản Lý Chiến Kê</h2>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="Admin" class="user-avatar">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-wrapper">
+
+                <!-- Product List View -->
+                <div id="productListView" class="card">
+                    <div class="card-header">
+                        <h3>Danh Sách Chiến Kê</h3>
+                        <button class="btn btn-primary btn-sm" onclick="showAddForm()"><i class="fa-solid fa-plus"></i>
+                            Thêm Mới</button>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã Số</th>
+                                    <th>Hình Ảnh</th>
+                                    <th>Tên Chiến Kê</th>
+                                    <th>Danh Mục</th>
+                                    <th>Giá</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- JS will populate this -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Edit/Add Form View (Hidden by default) -->
+                <div id="productFormView" class="card" style="display: none;">
+                    <div class="card-header">
+                        <h3>Thông Tin Chi Tiết</h3>
+                        <button class="btn btn-secondary btn-sm" onclick="hideForm()"><i
+                                class="fa-solid fa-arrow-left"></i> Quay Lại</button>
+                    </div>
+                    <div class="card-body">
+                        <form class="admin-form" id="addProductForm">
+                            <input type="hidden" id="prodId"> <!-- Hidden ID for Edit Mode -->
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Tên Chiến Kê</label>
+                                    <input type="text" id="prodName" class="form-control" placeholder="Nhập tên gà"
+                                        required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Mã Số</label>
+                                    <input type="text" id="prodCode" class="form-control" placeholder="Ví dụ: GA-001"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Loại Gà</label>
+                                    <select id="prodCategory" class="form-control">
+                                        <option value="Gà Nòi">Gà Nòi</option>
+                                        <option value="Gà Tre">Gà Tre</option>
+                                        <option value="Gà Lai">Gà Lai</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Giá Bán</label>
+                                    <input type="number" id="prodPrice" class="form-control"
+                                        placeholder="Nhập giá bán (VNĐ)">
+                                </div>
+                            </div>
+                            <!-- Extra fields -->
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>Cân Nặng</label>
+                                    <input type="text" id="prodWeight" class="form-control" placeholder="VD: 2.8 kg">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Tuổi</label>
+                                    <input type="text" id="prodAge" class="form-control" placeholder="VD: 11 tháng">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Thành Tích</label>
+                                    <input type="text" id="prodAchievements" class="form-control"
+                                        placeholder="VD: Win 2x">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Mô Tả Chi Tiết</label>
+                                <textarea id="prodDesc" class="form-control" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Hình Ảnh Chính</label>
+                                <div class="image-upload-area"
+                                    style="border: 2px dashed #ddd; padding: 20px; text-align: center; border-radius: 5px; cursor: pointer;"
+                                    onclick="document.getElementById('imageFile').click()">
+                                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: #aaa;"></i>
+                                    <p style="margin-top: 10px; color: #666;">Click để chọn ảnh chính</p>
+                                    <input type="file" id="imageFile" style="display: none;"
+                                        onchange="previewImage(this)">
+                                </div>
+                                <input type="text" id="prodImage" class="form-control"
+                                    placeholder="URL hình ảnh (Tự động điền sau khi upload)" readonly
+                                    style="margin-top: 10px; background: #f9f9f9;">
+                                <div id="imagePreview" style="margin-top: 10px; text-align: center;"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Thư Viện Ảnh (Nhiều Hình)</label>
+                                <div class="image-upload-area"
+                                    style="border: 2px dashed #ddd; padding: 20px; text-align: center; border-radius: 5px; cursor: pointer;"
+                                    onclick="document.getElementById('galleryFiles').click()">
+                                    <i class="fa-solid fa-images" style="font-size: 2rem; color: #aaa;"></i>
+                                    <p style="margin-top: 10px; color: #666;">Click để chọn thêm nhiều ảnh</p>
+                                    <input type="file" id="galleryFiles" style="display: none;" multiple
+                                        onchange="uploadGallery(this)">
+                                </div>
+                                <div id="galleryPreview"
+                                    style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;"></div>
+                                <!-- Store urls as JSON string or handle in JS logic -->
+                                <input type="hidden" id="prodImages" value="[]">
+                            </div>
+
+                            <div class="form-actions-right">
+                                <button type="button" class="btn btn-secondary" onclick="hideForm()">Hủy Bỏ</button>
+                                <button type="submit" class="btn btn-primary" id="saveBtn">Lưu Chiến Kê</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Load products on start
+        document.addEventListener('DOMContentLoaded', fetchProducts);
+
+        function showEditForm() {
+            document.getElementById('productListView').style.display = 'none';
+            document.getElementById('productFormView').style.display = 'block';
+            document.getElementById('addProductForm').reset();
+            document.getElementById('imagePreview').innerHTML = '';
+            document.getElementById('galleryPreview').innerHTML = '';
+            document.getElementById('prodImages').value = '[]';
+            document.getElementById('prodId').value = '';
+            document.getElementById('saveBtn').textContent = 'Lưu Chiến Kê';
+        }
+
+        function showAddForm() {
+            showEditForm();
+        }
+
+        function hideForm() {
+            document.getElementById('productFormView').style.display = 'none';
+            document.getElementById('productListView').style.display = 'block';
+        }
+
+        // Handle Image Selection and Upload
+        async function previewImage(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" style="max-height: 200px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">`;
+            }
+            reader.readAsDataURL(file);
+
+            // Upload immediately
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+                document.getElementById('imagePreview').innerHTML += '<p>Đang tải lên...</p>';
+
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (res.ok) {
+                    const data = await res.text();
+                    const cleanPath = data.replace(/\\/g, '/'); // Ensure forward slashes
+                    document.getElementById('prodImage').value = cleanPath;
+                    document.getElementById('imagePreview').innerHTML = `<img src="${cleanPath}" style="max-height: 200px; border-radius: 5px;"> <p style="color:green; margin-top:5px;"><i class="fa-solid fa-check"></i> Đã tải lên</p>`;
+
+                } else {
+                    alert('Upload ảnh thất bại');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Lỗi upload ảnh');
+            }
+        }
+
+        // Upload Gallery Logic
+        async function uploadGallery(input) {
+            const files = input.files;
+            if (!files || files.length === 0) return;
+
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append('images', files[i]);
+            }
+
+            try {
+                document.getElementById('galleryPreview').innerHTML += '<p>Đang tải ảnh...</p>';
+                const res = await fetch('/api/upload/multiple', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (res.ok) {
+                    const paths = await res.json();
+
+                    // Add to existing images
+                    let currentImages = JSON.parse(document.getElementById('prodImages').value || '[]');
+                    currentImages = [...currentImages, ...paths];
+                    document.getElementById('prodImages').value = JSON.stringify(currentImages);
+
+                    renderGallery(currentImages);
+                } else {
+                    alert('Lỗi upload nhiều ảnh');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Lỗi upload');
+            }
+        }
+
+        function renderGallery(images) {
+            const container = document.getElementById('galleryPreview');
+            container.innerHTML = '';
+            images.forEach((img, index) => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <div style="position: relative; display: inline-block;">
+                        <img src="${img}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px; border: 1px solid #ddd;">
+                        <span onclick="removeGalleryImage(${index})" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; width: 20px; height: 20px; text-align: center; cursor: pointer; line-height: 20px; font-size: 12px;">&times;</span>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function removeGalleryImage(index) {
+            let currentImages = JSON.parse(document.getElementById('prodImages').value || '[]');
+            currentImages.splice(index, 1);
+            document.getElementById('prodImages').value = JSON.stringify(currentImages);
+            renderGallery(currentImages);
+        }
+
+        // Add/Update Product Logic
+        document.getElementById('addProductForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const prodId = document.getElementById('prodId').value;
+            const productData = {
+                name: document.getElementById('prodName').value,
+                code: document.getElementById('prodCode').value,
+                category: document.getElementById('prodCategory').value,
+                price: document.getElementById('prodPrice').value,
+                weight: document.getElementById('prodWeight').value,
+                age: document.getElementById('prodAge').value,
+                achievements: document.getElementById('prodAchievements').value,
+                description: document.getElementById('prodDesc').value,
+                image: document.getElementById('prodImage').value || 'https://via.placeholder.com/300',
+                images: JSON.parse(document.getElementById('prodImages').value || '[]')
+            };
+
+            const method = prodId ? 'PUT' : 'POST';
+            const url = prodId ? `/api/products/${prodId}` : '/api/products';
+
+            try {
+                const res = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(productData)
+                });
+
+                if (res.ok) {
+                    alert(prodId ? 'Cập nhật thành công!' : 'Thêm chiến kê thành công!');
+                    hideForm();
+                    fetchProducts(); // Reload list
+                } else {
+                    const data = await res.json();
+                    alert('Lỗi: ' + data.message);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Có lỗi xảy ra');
+            }
+        });
+
+        // Edit Function - Load data to form
+        async function editProduct(id) {
+            try {
+                const res = await fetch(`/api/products/${id}`);
+                const prod = await res.json();
+
+                if (prod) {
+                    // Populate Form
+                    document.getElementById('prodId').value = prod._id;
+                    document.getElementById('prodName').value = prod.name;
+                    document.getElementById('prodCode').value = prod.code;
+                    document.getElementById('prodCategory').value = prod.category;
+                    document.getElementById('prodPrice').value = prod.price;
+                    document.getElementById('prodWeight').value = prod.weight || '';
+                    document.getElementById('prodAge').value = prod.age || '';
+                    document.getElementById('prodAchievements').value = prod.achievements || '';
+                    document.getElementById('prodDesc').value = prod.description;
+                    document.getElementById('prodImage').value = prod.image;
+
+                    // Preview Image
+                    if (prod.image) {
+                        document.getElementById('imagePreview').innerHTML = `<img src="${prod.image}" style="max-height: 200px; border-radius: 5px;">`;
+                    } else {
+                        document.getElementById('imagePreview').innerHTML = '';
+                    }
+
+                    // Render Gallery
+                    if (prod.images && prod.images.length > 0) {
+                        document.getElementById('prodImages').value = JSON.stringify(prod.images);
+                        renderGallery(prod.images);
+                    } else {
+                        document.getElementById('prodImages').value = '[]';
+                        renderGallery([]);
+                    }
+
+                    // Show Form UI
+                    document.getElementById('productListView').style.display = 'none';
+                    document.getElementById('productFormView').style.display = 'block';
+                    document.getElementById('saveBtn').textContent = 'Cập Nhật'; // Change button text
+                }
+            } catch (error) {
+                console.log(error);
+                alert('Không lấy được thông tin chiến kê');
+            }
+        }
+
+        // Fetch and Render Products
+        async function fetchProducts() {
+            try {
+                const res = await fetch('/api/products');
+                const products = await res.json();
+
+                const tbody = document.querySelector('.data-table tbody');
+                tbody.innerHTML = ''; // Clear old data
+
+                products.forEach(prod => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${prod.code || 'N/A'}</td>
+                        <td>
+                            <div class="table-img"><img src="${prod.image}" style="width:40px;height:40px;object-fit:cover;border-radius:4px;"></div>
+                        </td>
+                        <td>${prod.name}</td>
+                        <td>${prod.category}</td>
+                        <td>${prod.price ? Number(prod.price).toLocaleString('vi-VN') + 'đ' : 'Liên hệ'}</td>
+                        <td><span class="status-badge active">Đang bán</span></td>
+                        <td>
+                            <button class="action-btn edit" onclick="editProduct('${prod._id}')" style="margin-right: 5px;" title="Sửa"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete" onclick="deleteProduct('${prod._id}')" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        async function deleteProduct(id) {
+            if (confirm('Bạn có chắc muốn xóa chiến kê này không?')) {
+                try {
+                    await fetch('/api/products/' + id, { method: 'DELETE' });
+                    fetchProducts();
+                } catch (error) {
+                    alert('Xóa thất bại');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

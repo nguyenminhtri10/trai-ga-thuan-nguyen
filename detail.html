@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gà Điều Chân Xanh | Trại Gà Thuận Nguyễn</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Chi tiết chiến kê Gà Điều Chân Xanh tại Trại Gà Thuận Nguyễn. Thông tin chi tiết, hình ảnh và video.">
+    <meta name="keywords" content="gà điều chân xanh, gà nòi, gà tre, gà đá, thuận nguyễn">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Detail Page Specific Styles */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 60px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+        }
+
+        .breadcrumb i {
+            margin: 0 10px;
+            font-size: 0.8rem;
+        }
+
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .product-gallery {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #999;
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .thumb {
+            width: 80px;
+            height: 80px;
+            background-color: #eee;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .thumb:hover {
+            border-color: var(--primary-color);
+        }
+
+        .product-details h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .product-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .product-desc {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .detail-specs {
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlide 0.3s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper" style="display: flex; flex-direction: column; align-items: flex-start;">
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-feather-pointed"></i> Thuận Nguyễn
+                </a>
+                <a href="#contact" class="hotline-mini"
+                    style="font-size: 0.8rem; color: var(--secondary-color); margin-top: -5px; text-decoration: none;">0909.XXX.XXX</a>
+            </div>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="index.html#home" class="nav-link">Trang Chủ</a></li>
+                    <li><a href="index.html#about" class="nav-link">Giới Thiệu</a></li>
+                    <li><a href="index.html#products" class="nav-link">Sản Phẩm</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div id="userInfo" style="display: none; align-items: center; margin-right: 15px;">
+                    <span id="userName"
+                        style="color: white; margin-right: 10px; font-weight: bold; font-size: 0.9rem;"></span>
+                    <button id="logoutBtn"
+                        style="background: transparent; border: 1px solid #fff; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; transition: all 0.3s;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+                <a href="login.html" id="loginBtn" class="btn btn-login">Đăng Nhập</a>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title animate-fade-up">Chi Tiết Chiến Kê</h1>
+            <div class="breadcrumb animate-fade-up delay-1">
+                <a href="index.html">Trang Chủ</a> <i class="fa-solid fa-chevron-right"></i> <a href="list.html">Tất Cả
+                    Sản Phẩm</a> <i class="fa-solid fa-chevron-right"></i> <span>Gà Điều Chân Xanh</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="section-padding bg-light" style="padding-top: 20px;">
+        <div class="container">
+            <div class="product-detail-container">
+                <!-- Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image" id="mainImageContainer">
+                        <img id="mainImage" src="" alt="Chiến Kê"
+                            style="width:100%; height:100%; object-fit:cover; display:none;">
+                        <i class="fa-solid fa-crow" id="placeholderIcon"></i>
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="product-details">
+                    <h2 id="prodTitle">Đang tải...</h2>
+                    <div class="product-meta">
+                        <span><i class="fa-solid fa-code-branch"></i> Mã: <span id="prodCode">Loading...</span></span>
+                        <span><i class="fa-solid fa-clock"></i> Cập nhật: <span id="prodUpdated">...</span></span>
+                    </div>
+                    <div class="product-price" id="prodPrice">...</div>
+
+                    <div class="product-desc" id="prodDesc">
+                        <p>Đang tải thông tin chi tiết...</p>
+                    </div>
+
+                    <div class="detail-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">Dòng gà:</span>
+                            <span class="spec-value" id="specCategory">...</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Cân nặng:</span>
+                            <span class="spec-value" id="specWeight">...</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Tuổi:</span>
+                            <span class="spec-value" id="specAge">...</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Thành tích:</span>
+                            <span class="spec-value" id="specAchievements">...</span>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="buyNowBtn" class="btn btn-primary" style="cursor: pointer;">Liên hệ mua
+                            hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Trại Gà Thuận Nguyễn</h3>
+                <p>Nơi chia sẻ đam mê và cung cấp những chiến kê chất lượng nhất Việt Nam.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Liên Kết</h3>
+                <ul>
+                    <li><a href="index.html#home">Trang Chủ</a></li>
+                    <li><a href="list.html">Sản Phẩm</a></li>
+                    <li><a href="#">Tin Tức</a></li>
+                    <li><a href="#">Chính Sách</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Liên Hệ</h3>
+                <ul class="contact-info">
+                    <li><i class="fa-solid fa-location-dot"></i> Ấp X, Xã Y, Huyện Z, Tỉnh...</li>
+                    <li><i class="fa-solid fa-phone"></i> 0389.908.467</li>
+                    <li><i class="fa-solid fa-envelope"></i> contact@thuannguyen.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2024 Trại Gà Thuận Nguyễn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Đơn Hàng | Admin</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-feather-pointed"></i> <span>Thuận Admin</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="admin.html"><i class="fa-solid fa-gauge"></i> Tổng Quan</a></li>
+                <li><a href="admin-products.html"><i class="fa-solid fa-crow"></i> Quản Lý Gà</a></li>
+                <li><a href="admin-orders.html" class="active"><i class="fa-solid fa-cart-shopping"></i> Đơn Hàng</a>
+                </li>
+                <li><a href="admin-users.html"><i class="fa-solid fa-users"></i> Khách Hàng</a></li>
+                <li><a href="admin-livestream.html"><i class="fa-solid fa-video"></i> Live Stream</a></li>
+
+                <li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng Xuất</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h2>Quản Lý Đơn Hàng</h2>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="Admin" class="user-avatar">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-wrapper">
+
+                <!-- Order List View -->
+                <div id="orderListView" class="card">
+                    <div class="card-header">
+                        <h3>Danh Sách Đơn Hàng</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã ĐH</th>
+                                    <th>Khách Hàng</th>
+                                    <th>Sản Phẩm</th>
+                                    <th>Tổng Tiền</th>
+                                    <th>Ngày Đặt</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- JS will populate this -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Order Detail View (Hidden by default) -->
+                <div id="orderDetailView" class="card" style="display: none;">
+                    <div class="card-header">
+                        <h3>Chi Tiết Đơn Hàng</h3>
+                        <button class="btn btn-secondary btn-sm" onclick="hideDetail()"><i
+                                class="fa-solid fa-arrow-left"></i> Quay Lại</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="orderDetailContent" style="margin-bottom: 20px;">
+                            <!-- JS will populate this -->
+                        </div>
+
+                        <form id="updateStatusForm" class="admin-form">
+                            <input type="hidden" id="orderId">
+                            <div class="form-group">
+                                <label>Cập Nhật Trạng Thái</label>
+                                <select id="orderStatus" class="form-control">
+                                    <option value="Đang xử lý">Đang xử lý</option>
+                                    <option value="Đang giao">Đang giao</option>
+                                    <option value="Đã giao">Đã giao</option>
+                                    <option value="Đã hủy">Đã hủy</option>
+                                </select>
+                            </div>
+                            <div class="form-actions-right">
+                                <button type="submit" class="btn btn-primary">Cập Nhật Trạng Thái</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteOrderRequest()">Xóa Đơn
+                                    Hàng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchOrders);
+
+        async function fetchOrders() {
+            try {
+                const res = await fetch('/api/orders');
+                const orders = await res.json();
+
+                const tbody = document.querySelector('.data-table tbody');
+                tbody.innerHTML = '';
+
+                orders.forEach(order => {
+                    const date = new Date(order.createdAt).toLocaleDateString('vi-VN');
+                    const customerName = order.user ? order.user.name : (order.guestName || 'Khách vãng lai');
+                    const productsList = order.orderItems.map(item => item.name).join(', ');
+                    const statusClass = order.status === 'Đã giao' ? 'active' : (order.status === 'Đã hủy' ? 'inactive' : 'hot');
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>#${order._id.substring(18).toUpperCase()}</td>
+                        <td>${customerName}</td>
+                        <td>${productsList}</td>
+                        <td>${order.totalPrice ? order.totalPrice.toLocaleString() + 'đ' : 'Liên hệ'}</td>
+                        <td>${date}</td>
+                        <td><span class="status-badge ${statusClass}">${order.status}</span></td>
+                        <td>
+                            <button class="action-btn edit" onclick="viewOrder('${order._id}')" title="Xem Chi Tiết"><i class="fa-solid fa-eye"></i></button>
+                            <button class="action-btn delete" onclick="deleteOrder('${order._id}')" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            }
+        }
+
+        async function viewOrder(id) {
+            try {
+                const res = await fetch(`/api/orders/${id}`);
+                const order = await res.json();
+
+                if (order) {
+                    document.getElementById('orderId').value = order._id;
+                    document.getElementById('orderStatus').value = order.status;
+
+                    const customerInfo = order.user ?
+                        `<p><strong>Tên:</strong> ${order.user.name}</p><p><strong>Email:</strong> ${order.user.email}</p>` :
+                        `<p><strong>Tên:</strong> ${order.guestName}</p><p><strong>SĐT:</strong> ${order.guestPhone}</p>`;
+
+                    const productsHtml = order.orderItems.map(item => `
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
+                            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                            <div>
+                                <h4 style="margin: 0;">${item.name}</h4>
+                                <p style="margin: 0; color: #666;">Số lượng: ${item.qty}</p>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    document.getElementById('orderDetailContent').innerHTML = `
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <h4>Thông Tin Khách Hàng</h4>
+                                ${customerInfo}
+                                <p><strong>Địa chỉ:</strong> ${order.shippingAddress?.address || 'N/A'}, ${order.shippingAddress?.city || ''}</p>
+                            </div>
+                            <div>
+                                <h4>Thông Tin Đơn Hàng</h4>
+                                <p><strong>Mã ĐH:</strong> #${order._id}</p>
+                                <p><strong>Ngày đặt:</strong> ${new Date(order.createdAt).toLocaleString('vi-VN')}</p>
+                                <p><strong>Tổng tiền:</strong> ${order.totalPrice ? order.totalPrice.toLocaleString() + 'đ' : 'Liên hệ'}</p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <h4>Sản Phẩm</h4>
+                            ${productsHtml}
+                        </div>
+                    `;
+
+                    document.getElementById('orderListView').style.display = 'none';
+                    document.getElementById('orderDetailView').style.display = 'block';
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Không lấy được chi tiết đơn hàng');
+            }
+        }
+
+        function hideDetail() {
+            document.getElementById('orderDetailView').style.display = 'none';
+            document.getElementById('orderListView').style.display = 'block';
+        }
+
+        document.getElementById('updateStatusForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('orderId').value;
+            const status = document.getElementById('orderStatus').value;
+
+            try {
+                const res = await fetch(`/api/orders/${id}/status`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+
+                if (res.ok) {
+                    alert('Cập nhật trạng thái thành công!');
+                    hideDetail();
+                    fetchOrders();
+                }
+            } catch (error) {
+                alert('Có lỗi xảy ra');
+            }
+        });
+
+        async function deleteOrder(id) {
+            if (confirm('Bạn có chắc muốn xóa đơn hàng này?')) {
+                try {
+                    await fetch(`/api/orders/${id}`, { method: 'DELETE' });
+                    fetchOrders();
+                } catch (error) {
+                    alert('Xóa thất bại');
+                }
+            }
+        }
+
+        function deleteOrderRequest() {
+            const id = document.getElementById('orderId').value;
+            deleteOrder(id).then(() => hideDetail());
+        }
+    </script>
+</body>
+
+</html>

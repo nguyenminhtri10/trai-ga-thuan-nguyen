@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Khách Hàng | Admin</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-feather-pointed"></i> <span>Thuận Admin</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="admin.html"><i class="fa-solid fa-gauge"></i> Tổng Quan</a></li>
+                <li><a href="admin-products.html"><i class="fa-solid fa-crow"></i> Quản Lý Gà</a></li>
+                <li><a href="admin-orders.html"><i class="fa-solid fa-cart-shopping"></i> Đơn Hàng</a></li>
+                <li><a href="admin-users.html" class="active"><i class="fa-solid fa-users"></i> Khách Hàng</a></li>
+                <li><a href="admin-livestream.html"><i class="fa-solid fa-video"></i> Live Stream</a></li>
+
+                <li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng Xuất</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h2>Quản Lý Người Dùng</h2>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="Admin" class="user-avatar">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-wrapper">
+
+                <!-- User List View -->
+                <div id="userListView" class="card">
+                    <div class="card-header">
+                        <h3>Danh Sách Khách Hàng</h3>
+                        <button class="btn btn-primary btn-sm" onclick="showAddForm()"><i class="fa-solid fa-plus"></i>
+                            Thêm Mới</button>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Khách Hàng</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Vai Trò</th>
+                                    <th>Ngày tham gia</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- JS will populate this -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- User Form View (Hidden by default) -->
+                <div id="userFormView" class="card" style="display: none;">
+                    <div class="card-header">
+                        <h3>Thông Tin Người Dùng</h3>
+                        <button class="btn btn-secondary btn-sm" onclick="hideForm()"><i
+                                class="fa-solid fa-arrow-left"></i> Quay Lại</button>
+                    </div>
+                    <div class="card-body">
+                        <form class="admin-form" id="addUserForm">
+                            <input type="hidden" id="userId">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Họ và Tên</label>
+                                    <input type="text" id="userNameInput" class="form-control" placeholder="Nhập họ tên"
+                                        required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Số điện thoại</label>
+                                    <input type="tel" id="userPhone" class="form-control"
+                                        placeholder="Nhập số điện thoại" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Email</label>
+                                    <input type="email" id="userEmail" class="form-control" placeholder="Nhập email"
+                                        required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Mật Khẩu</label>
+                                    <input type="password" id="userPassword" class="form-control"
+                                        placeholder="Để trống nếu không đổi">
+                                    <small style="color: #888;">Nên để trống khi sửa, trừ khi muốn đổi pass.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-container"
+                                    style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" id="userIsAdmin" style="width: auto;">
+                                    <span>Là Quản Trị Viên (Admin)</span>
+                                </label>
+                            </div>
+
+                            <div class="form-actions-right">
+                                <button type="button" class="btn btn-secondary" onclick="hideForm()">Hủy Bỏ</button>
+                                <button type="submit" class="btn btn-primary" id="saveBtn">Lưu Người Dùng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchUsers);
+
+        function showEditForm() {
+            document.getElementById('userListView').style.display = 'none';
+            document.getElementById('userFormView').style.display = 'block';
+            document.getElementById('addUserForm').reset();
+            document.getElementById('userId').value = '';
+            document.getElementById('saveBtn').textContent = 'Lưu Người Dùng';
+        }
+
+        function showAddForm() {
+            showEditForm();
+        }
+
+        function hideForm() {
+            document.getElementById('userFormView').style.display = 'none';
+            document.getElementById('userListView').style.display = 'block';
+        }
+
+        // Fetch Users
+        async function fetchUsers() {
+            try {
+                const res = await fetch('/api/users');
+                const users = await res.json();
+
+                const tbody = document.querySelector('.data-table tbody');
+                tbody.innerHTML = '';
+
+                users.forEach(user => {
+                    const date = new Date(user.createdAt).toLocaleDateString('vi-VN');
+                    const roleBadge = user.isAdmin ? '<span class="status-badge hot">Admin</span>' : '<span class="status-badge active">Khách</span>';
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${user._id.substring(0, 8)}...</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phone}</td>
+                        <td>${roleBadge}</td>
+                        <td>${date}</td>
+                        <td>
+                            <button class="action-btn edit" onclick="editUser('${user._id}')" title="Sửa"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete" onclick="deleteUser('${user._id}')" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        }
+
+        // Edit User Logic
+        async function editUser(id) {
+            try {
+                const res = await fetch(`/api/users/${id}`);
+                const user = await res.json();
+
+                if (user) {
+                    document.getElementById('userId').value = user._id;
+                    document.getElementById('userNameInput').value = user.name;
+                    document.getElementById('userEmail').value = user.email;
+                    document.getElementById('userPhone').value = user.phone;
+                    document.getElementById('userIsAdmin').checked = user.isAdmin;
+                    document.getElementById('userPassword').value = ''; // Don't show password
+
+                    document.getElementById('userListView').style.display = 'none';
+                    document.getElementById('userFormView').style.display = 'block';
+                    document.getElementById('saveBtn').textContent = 'Cập Nhật';
+                }
+            } catch (error) {
+                console.log(error);
+                alert('Không lấy được thông tin người dùng');
+            }
+        }
+
+        // Add/Update User Logic
+        document.getElementById('addUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userId = document.getElementById('userId').value;
+            const userData = {
+                name: document.getElementById('userNameInput').value,
+                email: document.getElementById('userEmail').value,
+                phone: document.getElementById('userPhone').value,
+                isAdmin: document.getElementById('userIsAdmin').checked
+            };
+
+            const userPass = document.getElementById('userPassword').value;
+            if (userPass) {
+                userData.password = userPass;
+            }
+
+            const method = userId ? 'PUT' : 'POST';
+            const url = userId ? `/api/users/${userId}` : '/api/users';
+
+            try {
+                const res = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (res.ok) {
+                    alert(userId ? 'Cập nhật thành công!' : 'Thêm người dùng thành công!');
+                    hideForm();
+                    fetchUsers();
+                } else {
+                    const data = await res.json();
+                    alert('Lỗi: ' + data.message);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Có lỗi xảy ra');
+            }
+        });
+
+        // Delete User
+        async function deleteUser(id) {
+            if (confirm('Bạn có chắc muốn xóa người dùng này không? Hành động này không thể hoàn tác.')) {
+                try {
+                    await fetch('/api/users/' + id, { method: 'DELETE' });
+                    fetchUsers();
+                } catch (error) {
+                    alert('Xóa thất bại');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

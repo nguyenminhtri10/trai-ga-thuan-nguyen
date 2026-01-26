@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập | Trại Gà Thuận Nguyễn</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="auth-page-container">
+        <div class="auth-box animate-fade-up">
+            <a href="index.html" class="home-link"><i class="fa-solid fa-house"></i> Trở về Trang chủ</a>
+
+            <div class="auth-header">
+                <i class="fa-solid fa-feather-pointed logo-icon"></i> Thuận Nguyễn
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-target="loginForm">Đăng Nhập</button>
+                <button class="auth-tab" data-target="registerForm">Đăng Ký</button>
+            </div>
+
+            <div class="auth-forms">
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="loginPhone">Số điện thoại</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="loginPhone" placeholder="Nhập số điện thoại" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Mật khẩu</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <label class="remember-me">
+                            <input type="checkbox"> Ghi nhớ đăng nhập
+                        </label>
+                        <a href="forgot-password.html" class="forgot-password">Quên mật khẩu?</a>
+                    </div>
+                    <div class="form-actions-buttons">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
+                    </div>
+
+                    <div class="divider"><span>Hoặc</span></div>
+
+                    <div class="social-login">
+                        <button type="button" class="social-btn facebook"><i
+                                class="fa-brands fa-facebook-f"></i></button>
+                        <button type="button" class="social-btn google"><i class="fa-brands fa-google"></i></button>
+                    </div>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="regName">Họ và Tên</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-signature"></i>
+                            <input type="text" id="regName" placeholder="Nhập họ tên của bạn" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="regEmail" placeholder="Nhập email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPhone">Số điện thoại</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="regPhone" placeholder="Nhập số điện thoại" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Mật khẩu</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="regPassword" placeholder="Tạo mật khẩu" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Đăng Ký Ngay</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
