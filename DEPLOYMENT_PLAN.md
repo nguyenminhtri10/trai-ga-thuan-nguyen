@@ -1,6 +1,6 @@
-# Kế Hoạch Triển Khai (Deploy) Website Trại Gà & Tên Miền
+# Kế Hoạch Triển Khai (Deploy) Website Trại Gà Trị Nguyễn & Tên Miền
 
-Dưới đây là phương án tối ưu nhất để đưa website lên internet hoàn toàn **MIỄN PHÍ** và hoạt động ổn định trong năm 2024.
+Dưới đây là phương án tối ưu nhất để đưa website lên internet hoàn toàn **MIỄN PHÍ** và hoạt động ổn định trong năm 2026.
 
 ## 1. Tổng Quan Kiến Trúc
 
@@ -38,7 +38,7 @@ Dưới đây là phương án tối ưu nhất để đưa website lên interne
 2.  Chọn **New +** -> **Web Service**.
 3.  Kết nối với Repository GitHub vừa tạo.
 4.  Điền thông tin:
-    *   **Name**: `trai-ga-thuan-nguyen`
+    *   **Name**: `trai-ga-tri-nguyen`
     *   **Runtime**: Node
     *   **Build Command**: `npm install --prefix backend` (để cài đặt thư viện trong thư mục backend)
     *   **Start Command**: `node backend/server.js`
@@ -58,7 +58,7 @@ Hiện tại (2024), các nhà cung cấp tên miền miễn phí như Freenom (
 **Các lựa chọn hiện có:**
 
 1.  **Sử dụng Subdomain của Render (Khuyên dùng - Miễn phí)**
-    *   Địa chỉ web sẽ là: `https://trai-ga-thuan-nguyen.onrender.com`
+    *   Địa chỉ web sẽ là: `https://trai-ga-tri-nguyen.onrender.com`
     *   **Ưu điểm**: Có sẵn HTTPS (ổ khóa bảo mật), ổn định, không lo hết hạn.
     *   **Nhược điểm**: Tên hơi dài và có đuôi `.onrender.com`.
 
