@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // Update Page Title
-            document.title = `${prod.name} | Trại Gà Thuận Nguyễn`;
+            document.title = `${prod.name} | Trại Gà Trị Nguyễn`;
 
             // Order Logic Init
             setupOrderLogic(prod);

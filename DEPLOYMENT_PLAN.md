@@ -75,8 +75,8 @@ Hiện tại (2024), các nhà cung cấp tên miền miễn phí như Freenom (
 Để tiến hành deploy, chúng ta cần thực hiện các việc sau:
 
 1.  [x] Code đã chạy ổn ở Local.
-2.  [ ] **Sửa code Upload ảnh**: Chuyển sang Cloudinary (Bắt buộc nếu deploy free).
-3.  [ ] **Đẩy code lên GitHub**.
-4.  [ ] **Cấu hình trên Render**.
+2.  [x] **Sửa code Upload ảnh**: Chuyển sang Cloudinary (Đã xong code, chờ cấu hình Env).
+3.  [x] **Đẩy code lên GitHub** (Đã xong).
+4.  [ ] **Cấu hình trên Render** (Đang thực hiện).
 
 Bạn có muốn tôi bắt đầu thực hiện việc **Sửa code Upload ảnh sang Cloudinary** ngay bây giờ không? Đây là bước quan trọng nhất để web chạy online được.
